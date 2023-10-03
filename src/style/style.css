@@ -1,0 +1,50 @@
+body {
+    display: flex;
+    justify-content: center;
+    background-color: #1E1E1E;
+    height: 100vh
+}
+
+div.container {
+    display: flex;
+    flex-direction: column;
+}
+
+section#clima {
+    display: flex;
+    flex-direction: column;
+}
+
+section#adicionais {
+    display: flex;
+    flex-direction: row;
+}
+
+div#dados {
+    display: flex;
+    flex-direction: column;
+}
+
+figure.adicional {
+    background-color: #D9D9D9;
+}
+
+.dados_semana {
+    column-count: 2; /* Divide os elementos em 2 colunas */
+    column-gap: 20px; /* Define um espaço entre as colunas (opcional) */
+}
+
+.dados_semana li {
+    break-inside: avoid; /* Evita que um item seja dividido entre as colunas */
+    padding: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
+    height: 100vh; /* Define a altura para ocupar a altura da tela inteira */
+}
