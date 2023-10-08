@@ -1,144 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 body {
+    font-family: Poppins, Arial, sans-serif;
+
+    box-sizing: border-box;
+    margin: 0;
+    height: 100vh;
+    padding: 1.5%;
+
     display: flex;
     justify-content: center;
+
     background-color: #1E1E1E;
-    height: 100vh
 }
+
 
 div.container {
     display: flex;
     flex-direction: column;
+
+    margin: 0 5vh;
+}
+
+input#barraPesquisa {
+    padding: 1em 0.5em;
+    border-radius: 1em;
+    margin-bottom: 5vh;
+    border: none;
+    outline: none;
+
+    font-size: 1.5em;
+
+    height: 1.5em;
+    width: 15em;
+
+    transition: 0.25s;
+}
+
+input#barraPesquisa:hover{
+    opacity: 90%;
+    transform: scale(110%);
+}
+
+
+.loupe {
+    left: 300px;
+    bottom: 84px;
 }
 
 section#clima {
     display: flex;
-    flex-direction: column;
+
+    color: #e2e6ed;
+    font-size: 1.5em;
+}
+
+section#clima > div {
+    display: flex;
+}
+
+section#clima > div > img {
+    width: 80%;
+}
+
+section#clima > p > span#temperatura {
+    font-size: 2em;
 }
 
 section#adicionais {
     display: flex;
-    flex-direction: row;
-    
-    position: absolute;
-    left: 240px;
-    column-gap: 20px;
-    bottom: 330px;
-}
-
-div#dados {
-    display: flex;
-    
-    flex-direction: column;
-}
-
-figure.adicional {
-    background-color: #D9D9D9;
-    
-    border-radius: 20px;
-    height: 100px;
-    width: 80px;
-    
-}
-
-.dados_semana {
-    column-count: 2; /* Divide os elementos em 2 colunas */
-    column-gap: 15px; /* Define um espaço entre as colunas (opcional) */
-    position: absolute;
-    right: 95px;
-    bottom: 50px;
-    color: #D9D9D9;
-}
-
-.dados_semana li {
-    break-inside: avoid; /* Evita que um item seja dividido entre as colunas */
-    padding: 10px;
-    padding-left: 50px;
-    padding-right: 50px;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: center; /* Centraliza verticalmente */
-    height: 100vh; /* Define a altura para ocupar a altura da tela inteira */
-}
-
-
-.grafico{
-    height: 50px;
-    width: 30px;
-    justify-self: right;
-}
-
-#mapa{
-    position: absolute;
-    bottom: 55px;
-    left: 150px;
-}
-
-#barraPesquisa{
-    animation: ease-in-out;
-    height: 45px;
-    font-size: 20px;
-    font: Poppins;
-    width: 400px;
-    padding: 15px;
-    border-radius: 30px;
-    border: 0;
-    outline: 0;
-    opacity: 80%;
-    position: absolute;
-    bottom: 600px;
-    left: 150px
-}
-
-#barraPesquisa:hover{
-    opacity: 90%;
-}
-
-#info{
-    justify-content: center;
-    
-}
-
-#sensacao{
-    font-size: 30px;
-    color: #D9D9D9;
-    font: Poppins;
-
-}
-
-#minMax{
-    font-size: 30px;
-    color: #D9D9D9;
-    font: Poppins;
-
-}
-
-#temperatura{
-    font-size: 40px;
-    color: #D9D9D9;
-    font: Poppins;
-
-}
-
-#grafico{
-    position: absolute;
-    right: 150px;
-    bottom: 350px;
-}
-
-#displayClima{
-    position: absolute;
-    left: 240px;
-    bottom: 450px;
-
-}
-
-.loupe{
-    position: absolute;
-    left: 498px;
-    bottom: 603px;
-    cursor: pointer;
 }
