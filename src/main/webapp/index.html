@@ -10,16 +10,19 @@
 </head>
 <body>
     <div id="info" class="container">
-        <input type="search" name="pesquisa" id="barraPesquisa" >
-        </button><img class="loupe" src="assets/icons/FiSearch.png" alt="" height="40" width="40"></button>
+        <section id="pesquisa">
+            <input type="search" name="pesquisa" id="barraPesquisa">
+            <button><img class="loupe" onclick=atualizarMapa() src="assets/icons/FiSearch.png" alt="" height="35" width="35"></button>
+        </section>
         <section id="clima">
-            <img src="assets/icons/icon.png" alt="">
-            <div id="displayClima">
-                </p>
-                    <span id="temperatura">28°</span><span id="minMax">15°/20°</span></br>
-                    <span id="sensacao">Sensação térmica 50°</span>
-                </p>
+            <div>
+                <img src="assets/icons/icon.png" alt="">
             </div>
+            <p>
+                <span id="temperatura">28°</span><span id="minMax">15°/20°</span>
+                <br>
+                <span id="sensacao">Sensação térmica 50°</span>
+            </p>
         </section>
         <section id="adicionais">
             <figure id="gotas" class="adicional"><img src="assets/icons/gotas.png" alt=""></figure>
