@@ -12,18 +12,22 @@ import java.io.IOException;
 @WebServlet(urlPatterns = {"/WeatherAcess"})
 public class WeatherController extends HttpServlet {
 
-    private IWeatherService weatherRequest;
+    private IWeatherService weatherService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.setCharacterEncoding("UTF-8");
+
         if (req.getServletPath().equals("/WeatherAcess")) {
-            this.weatherRequest = new OpenWeatherService();
+            this.weatherService = new OpenWeatherService();
 
             resp.setContentType("application/json");
 
             String jsonInput = req.getReader().lines().reduce("", (accumulator, actual) -> accumulator + actual);
 
-            resp.getWriter().write(this.weatherRequest.getWeatherInformation(jsonInput));
+            System.out.println(jsonInput);
+
+            resp.getWriter().write(this.weatherService.getWeatherInformation(jsonInput));
         }
     }
 
