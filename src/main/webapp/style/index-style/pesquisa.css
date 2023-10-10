@@ -1,0 +1,51 @@
+section#pesquisa > form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-radius: 2em;
+    padding: 0.5em 1.2em;
+
+    background-color: #e2e6ed;
+}
+
+input#barraPesquisa {
+    border: none;
+    outline: none;
+    background: transparent;
+
+    font-size: 1.8em;
+
+    height: 1.5em;
+    width: 15em;
+}
+
+ul#resultadosPesquisa {
+    background: #e2e6ed;
+    list-style-type: none;
+    border-top: solid #d9dce1;
+
+    font-size: 1.2em;
+    margin: 0;
+    border-radius: 0 0 2em 2em;
+    padding: 0.2em 1.2em;
+}
+
+ul#resultadosPesquisa > li:hover {
+    background: #d9dce1;
+}
+
+button#lupa {
+    background: transparent;
+    border: none;
+}
+
+button#lupa > img {
+    width: 2.5em;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+button#lupa > img:hover {
+    transform: scale(120%);
+}

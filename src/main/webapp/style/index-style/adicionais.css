@@ -1,0 +1,40 @@
+section#adicionais {
+    display: flex;
+    justify-content: center;
+}
+
+section#adicionais > figure.adicional {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    width: 7em;
+    height: 7em;
+
+    border-radius: 2em;
+    padding: 1em;
+    margin: 3em 0.8em;
+
+    background-color: #e2e6ed;
+}
+
+section#adicionais > figure.adicional > img.adicionalFigura {
+    width: 4.2em;
+}
+
+section#adicionais > figure.adicional > figcaption {
+    justify-content: center;
+}
+
+section#adicionais > figure.adicional > p {
+    margin: 0;
+}
+
+@media screen and (max-width: 40vw ) {
+    section#adicionais {
+        padding-left: 0;
+        justify-content: center;
+    }
+}

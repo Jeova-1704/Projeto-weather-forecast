@@ -1,5 +1,10 @@
 let latitude = 0;
 let longitude = 0;
+let cidades = [
+    "Arcoverde", "Maceió",
+    "Correntes", "Garanhuns",
+    "Pedra", "Caruaru"
+]
 
 function atualizarMapa(novaLatitude, novaLongitude) {
     let mapa = document.getElementById("mapaVisualizer");
@@ -15,3 +20,14 @@ const pessoa = {
     lat: latitude,
     long: longitude,
 };
+
+async function procurar() {
+
+    let pesquisa = document.getElementById("barraPesquisa").value;
+
+    console.log(pesquisa);
+    let resultados = cidades.filter(
+        (cidade) => {return cidade.toLowerCase().includes(pesquisa.toLowerCase())}
+    );
+    console.log(resultados);
+}

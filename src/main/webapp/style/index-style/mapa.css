@@ -1,0 +1,20 @@
+section#mapa {
+    display: flex;
+    margin: 0;
+
+    align-content: center;
+    justify-content: center;
+}
+
+section#mapa > iframe {
+    /*width: 40em;*/
+    aspect-ratio: 16/9;
+    width: 35vw;
+    /*height: 20em;*/
+}
+
+@media screen and (max-width: 1200px) {
+    section#mapa > iframe {
+        width: 35vw;
+    }
+}

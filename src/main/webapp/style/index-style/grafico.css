@@ -1,0 +1,20 @@
+div#dados > section#grafico {
+    display: flex;
+
+    justify-content: center;
+    align-items: flex-end;
+    height: auto;
+    flex: 1;
+}
+
+div#dados > section#grafico > img {
+    aspect-ratio: 500/300;
+    width: 35vw;
+    height: auto;
+}
+
+@media screen and (max-width: 1200px) {
+    div#dados > section#grafico > img {
+        width: 45vw;
+    }
+}
