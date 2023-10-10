@@ -1,0 +1,63 @@
+section#clima {
+    display: flex;
+
+    color: #e2e6ed;
+    font-size: 1.5em;
+}
+
+section#clima > div {
+    display: block;
+
+    justify-content: center;
+    align-items: center;
+
+}
+
+section#clima > div > img {
+    width: 80%;
+}
+
+section#clima > div > span#temperatura {
+    font-size: 2em;
+}
+
+section#clima > div > div#minMax {
+    display: inline-flex;
+    margin-left: 1em;
+
+    align-items: center;
+
+}
+
+section#clima > div > div#sensacao {
+    font-size: 1.2em;
+}
+
+
+@media screen and (max-width: 1200px){
+    section#clima {
+        justify-content: center;
+        font-size: 1.5em;
+    }
+
+    section#clima > div > img {
+        width: 80%;
+    }
+
+    section#clima > div > span#temperatura {
+        font-size: 1.5em;
+    }
+
+    section#clima > div > div#minMax {
+        display: inline-flex;
+        margin-left: 1em;
+
+        align-items: center;
+
+    }
+
+    section#clima > div > div#sensacao {
+        font-size: 1em;
+    }
+
+}

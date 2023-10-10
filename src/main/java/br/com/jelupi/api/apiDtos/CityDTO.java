@@ -2,6 +2,6 @@ package br.com.jelupi.api.apiDtos;
 
 import java.math.BigDecimal;
 
-public record CityDTO(String nome, String estado, String pais,
-                      BigDecimal latitude, BigDecimal longitude) {
+public record CityDTO(String cidade, String id, String pais,
+                      float latitude, float longitude) {
 }

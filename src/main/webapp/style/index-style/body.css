@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body {
+    font-family: Poppins, Arial, sans-serif;
+
+    box-sizing: border-box;
+    margin: 0;
+    height: 100vh;
+    padding: 0.5vw;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    background-color: #1E1E1E;
+}
+
+
+div.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    margin: 0 3vw;
+}
+
+div#dados {
+    align-content: center;
+    justify-content: space-around;
+}
+
+@media screen and (max-width: 1200px) {
+    div.container {
+        margin: 0;
+    }
+}

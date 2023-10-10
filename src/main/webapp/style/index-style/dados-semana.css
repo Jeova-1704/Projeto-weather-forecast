@@ -1,0 +1,35 @@
+section#semanas-previsao {
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+
+    margin: 1.9em 0;
+    padding: 2em 0 0 2em;
+}
+
+section#semanas-previsao > ul#dados-semana {
+    list-style-type: none;
+    color: #e2e6ed;
+
+    display: grid;
+    grid-template-columns: 15em 15em;
+    grid-template-rows: 4em 4em 4em 4em;
+    grid-column-gap: initial;
+    justify-items: right;
+
+    padding: 0;
+}
+
+section#semanas-previsao > ul#dados-semana > li {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+section#semanas-previsao > ul#dados-semana > li > div {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0.5em;
+}

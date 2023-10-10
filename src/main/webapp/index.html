@@ -3,72 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="assets/icons/icon.png">
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/reset.css">
-    <title>Proejto weather-forecast</title>
+    <link rel="icon" href="assets/icons/sol.svg">
+    <link rel="stylesheet" href="style/index-style/body.css">
+    <link rel="stylesheet" href="style/index-style/pesquisa.css">
+    <link rel="stylesheet" href="style/index-style/clima.css">
+    <link rel="stylesheet" href="style/index-style/adicionais.css">
+    <link rel="stylesheet" href="style/index-style/mapa.css">
+    <link rel="stylesheet" href="style/index-style/grafico.css">
+    <link rel="stylesheet" href="style/index-style/dados-semana.css">
+    <title>Projeto weather-forecast</title>
 </head>
 <body>
     <div id="info" class="container">
-        <input type="search" name="pesquisa" id="barraPesquisa" >
-        </button><img class="loupe" src="assets/icons/FiSearch.png" alt="" height="40" width="40"></button>
+        <section id="pesquisa">
+            <form>
+                <input id="barraPesquisa" type="text" name="pesquisa"
+                       placeholder="Pesquisar localização..." onkeyup="procurar()" autocomplete="off">
+                <button id="lupa"><img onclick="" src="assets/icons/lupa.svg" alt=""></button>
+            </form>
+            <!--<ul id="resultadosPesquisa">
+                <li>Arcoverde</li>
+                <li>Maceió</li>
+                <li>Garanhuns</li>
+            </ul>-->
+        </section>
         <section id="clima">
-            <img src="assets/icons/icon.png" alt="">
-            <div id="displayClima">
-                </p>
-                    <span id="temperatura">28°</span><span id="minMax">15°/20°</span></br>
-                    <span id="sensacao">Sensação térmica 50°</span>
-                </p>
+            <div>
+                <img src="assets/icons/sol.svg" alt="Símbolo de sol">
+            </div>
+            <div>
+                <span id="temperatura">28°</span><div id="minMax">15°/20°</div>
+                <br>
+                <div id="sensacao">Sensação térmica de 50°C</div>
             </div>
         </section>
         <section id="adicionais">
-            <figure id="gotas" class="adicional"><img src="assets/icons/gotas.png" alt=""></figure>
-            <figure id="vento" class="adicional"><img src="assets/icons/vento.png" alt=""></figure>
-            <figure id="olho" class="adicional"><img src="assets/icons/olho.png" alt=""></figure>
+            <figure id="gotas" class="adicional">
+                <img class="adicionalFigura" src="assets/icons/gotas.svg" alt="Sìmbolo com duas gotas" >
+                <figcaption>Humidade</figcaption>
+                <p>15%</p>
+            </figure>
+            <figure id="vento" class="adicional">
+                <img class="adicionalFigura" src="assets/icons/vento.svg" alt="Símbolo de vento" >
+                <figcaption>Vento</figcaption>
+                <p>12 km/h</p></figure>
+            <figure id="olho" class="adicional">
+                <img class="adicionalFigura" src="assets/icons/visibilidade.svg" alt="Símbolo de visibilidade" >
+                <figcaption>Visibilidade</figcaption>
+                <p>9 km</p>
+            </figure>
         </section>
         <section id="mapa">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d15787.627348603686!2d-37.050766849999995!3d-8.4108105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sgoogle%20maps%20api%20frame!5e0!3m2!1spt-BR!2sbr!4v1696296209365!5m2!1spt-BR!2sbr" width="400" 
-            height="200" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d15787.627348603686!2d-37.050766849999995!3d-8.4108105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sgoogle%20maps%20api%20frame!5e0!3m2!1spt-BR!2sbr!4v1696296209365!5m2!1spt-BR!2sbr"
+                    id="mapaVisualizer"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
             </iframe>
         </section>
     </div>
 
     <div id="dados" class="container">
-        <section class="grafico">
-            <img src="assets/icons/grafico.png" id="grafico" alt="grafico" height="300" width="550">
+        <section id="grafico">
+            <img src="assets/icons/grafico.png" alt="grafico" height="300" width="550">
         </section>
-        <section class="semanas_previsao">
-            <ul class="dados_semana">
-                <li class="dado1">
-                    <p>Sext. set 29 <img src="assets/icons/nuvemChovendo.png" alt="Nuvem chovendo"> 15°/30° </p>
+        <section id="semanas-previsao">
+            <ul id="dados-semana">
+                <li id="dado1">
+                    <div>Sext. set 29</div>
+                    <div><img src="assets/icons/chuva.svg" alt="Nuvem chovendo"> 15°/30°</div>
                 </li>
-                <li class="dado2">
-                    <p>Sext. set 29 <img src="assets/icons/nuvemChovendo.png" alt="Nuvem chovendo"> 15°/30° </p>
+                <li id="dado2">
+                    <div>Sext. set 29</div>
+                    <div><img src="assets/icons/chuva.svg" alt="Nuvem chovendo"> 15°/30°</div>
                 </li>
-                <li class="dado3">
-                    <p>Sext. set 29 <img src="assets/icons/nuvemChovendo.png" alt="Nuvem chovendo"> 15°/30° </p>
+                <li id="dado3">
+                    <div>Sext. set 29</div>
+                    <div><img src="assets/icons/chuva.svg" alt="Nuvem chovendo"> 15°/30°</div>
                 </li>
-                <li class="dado4">
-                    <p>Sext. set 29 <img src="assets/icons/nuvemChovendo.png" alt="Nuvem chovendo"> 15°/30° </p>
+                <li id="dado4">
+                    <div>Sext. set 29</div>
+                    <div><img src="assets/icons/chuva.svg" alt="Nuvem chovendo"> 15°/30°</div>
                 </li>
-                <li class="dado5">
-                    <p>Sext. set 29 <img src="assets/icons/nuvemChovendo.png" alt="Nuvem chovendo"> 15°/30° </p>
+                <li id="dado5">
+                    <div>Sext. set 29</div>
+                    <div><img src="assets/icons/chuva.svg" alt="Nuvem chovendo"> 15°/30°</div>
                 </li>
-                <li class="dado6">
-                    <p>Sext. set 29 <img src="assets/icons/nuvemChovendo.png" alt="Nuvem chovendo"> 15°/30° </p>
+                <li id="dado6">
+                    <div>Sext. set 29</div>
+                    <div><img src="assets/icons/chuva.svg" alt="Nuvem chovendo"> 15°/30°</div>
                 </li>
-                <li class="dado7">
-                    <p>Sext. set 29 <img src="assets/icons/nuvemChovendo.png" alt="Nuvem chovendo"> 15°/30° </p>
+                <li id="dado7">
+                    <div>Sext. set 29</div>
+                    <div><img src="assets/icons/chuva.svg" alt="Nuvem chovendo"> 15°/30°</div>
                 </li>
-                <li class="dado8">
-                    <p>Sext. set 29 <img src="assets/icons/nuvemChovendo.png" alt="Nuvem chovendo"> 15°/30° </p>
+                <li id="dado8">
+                    <div>Sext. set 29</div>
+                    <div><img src="assets/icons/chuva.svg" alt="Nuvem chovendo"> 15°/30°</div>
                 </li>
             </ul>
         </section>
     </div>
+    <script src="script/script.js"></script>
+
 </body>
 </html>
