@@ -1,14 +1,17 @@
 
 
-const tempElement = document.getElementById("temperatura")
-
+const tempElement = document.getElementById("temperatura");
+const minMaxElement = document.getElementById("minMax");
+const sensacaoElement = document.getElementById("sensacao");
+const humidadeElement = document.getElementById("humidade");
+const ventoElement = document.getElementById("ventoDisplay");
+const visibilidadeElement = document.getElementById("visibilidadeDisplay");
 
 function fazerRequisicaoPOST() {
-    console.log("fazer requisicao");
     const url = 'http://localhost:8080/Projeto-weather-forecast/WeatherAcess';
     const data = {
-        "lat": 10,
-        "lon": 10
+        "lat": 36.3243,
+        "lon": 9.12767
         // Adicione mais dados conforme necessário
     };
 
@@ -30,8 +33,22 @@ function fazerRequisicaoPOST() {
         })
         .then(data => {
             console.log(data);
-            tempCelsius = data.temperatura - 273;
+            const tempCelsius = data.temperatura - 273;
+            const min = data.minTemp - 273;
+            const max = data.maxTemp - 273;
+            const sensTerm = data.sensTerm - 273;
+            const humidade = data.humidade;
+            const vento = data.velVento;
+            const visibilidade = data.Visibilidade;
+
             tempElement.innerText = tempCelsius + "º";
+            minMaxElement.innerText = min + "º/" + max + "º";
+            sensacaoElement.innerText = "Sensação térmica de " + sensTerm + "°C";
+            humidadeElement.innerText = humidade + "%";
+            ventoElement.innerText = vento + " km/h";
+            visibilidadeElement.innerText = visibilidade + "km";
+
+            atualizarMapa(36.3243,9.12767)
         })
         .catch(error => {
             console.error('Catch Erro na requisição:', error);
