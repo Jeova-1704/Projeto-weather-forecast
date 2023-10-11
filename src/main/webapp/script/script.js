@@ -1,4 +1,8 @@
 
+
+const tempElement = document.getElementById("temperatura")
+
+
 function fazerRequisicaoPOST() {
     console.log("fazer requisicao");
     const url = 'http://localhost:8080/Projeto-weather-forecast/WeatherAcess';
@@ -26,6 +30,8 @@ function fazerRequisicaoPOST() {
         })
         .then(data => {
             console.log(data);
+            tempCelsius = data.temperatura - 273;
+            tempElement.innerText = tempCelsius + "º";
         })
         .catch(error => {
             console.error('Catch Erro na requisição:', error);
