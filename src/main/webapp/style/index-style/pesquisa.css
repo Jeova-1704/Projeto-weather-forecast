@@ -9,18 +9,21 @@ section#pesquisa > form {
     background-color: #e2e6ed;
 }
 
+section#pesquisa > div {
+    width: 50px;
+}
+
 input#barraPesquisa {
     border: none;
     outline: none;
     background: transparent;
 
     font-size: 1.8em;
-
-    height: 1.5em;
-    width: 15em;
 }
 
 ul#resultadosPesquisa {
+    position: absolute;
+
     background: #e2e6ed;
     list-style-type: none;
     border-top: solid #d9dce1;

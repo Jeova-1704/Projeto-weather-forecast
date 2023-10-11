@@ -25,8 +25,6 @@ public class WeatherController extends HttpServlet {
 
             String jsonInput = req.getReader().lines().reduce("", (accumulator, actual) -> accumulator + actual);
 
-            System.out.println(jsonInput);
-
             resp.getWriter().write(this.weatherService.getWeatherInformation(jsonInput));
         }
     }

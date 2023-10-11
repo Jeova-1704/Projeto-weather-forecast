@@ -17,7 +17,6 @@ public class OpenWeatherAdapter implements ApiAdapter {
     @Override
     public WeatherDTO JsonToDTO() {
         JsonObject jsonObject = JsonParser.parseString(this.jsonString).getAsJsonObject();
-        System.out.println(this.jsonString);
 
         JsonArray weather = jsonObject.getAsJsonArray("weather");
         JsonObject main = jsonObject.get("main").getAsJsonObject();
