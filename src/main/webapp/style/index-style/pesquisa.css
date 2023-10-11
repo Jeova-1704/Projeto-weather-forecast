@@ -1,4 +1,4 @@
-section#pesquisa > form {
+section#pesquisa > div#barra-pesquisa {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -9,11 +9,11 @@ section#pesquisa > form {
     background-color: #e2e6ed;
 }
 
-section#pesquisa > div {
+section#pesquisa > div#container-resultados {
     width: 50px;
 }
 
-input#barraPesquisa {
+input#entradaPesquisa {
     border: none;
     outline: none;
     background: transparent;
