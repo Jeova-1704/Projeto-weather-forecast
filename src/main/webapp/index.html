@@ -19,13 +19,10 @@
             <form>
                 <input id="barraPesquisa" type="text" name="pesquisa"
                        placeholder="Pesquisar localização..." onkeyup="procurar()" autocomplete="off">
-                <button id="lupa"><img onclick="" src="assets/icons/lupa.svg" alt=""></button>
+                <button id="lupa"><img onclick="fazerRequisicaoPOST()" src="assets/icons/lupa.svg" alt=""></button>
             </form>
-            <!--<ul id="resultadosPesquisa">
-                <li>Arcoverde</li>
-                <li>Maceió</li>
-                <li>Garanhuns</li>
-            </ul>-->
+            <div>
+            </div>
         </section>
         <section id="clima">
             <div>
@@ -106,6 +103,7 @@
         </section>
     </div>
     <script src="script/script.js"></script>
+    <script src="script/search.js"></script>
 
 </body>
 </html>

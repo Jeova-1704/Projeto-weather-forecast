@@ -1,10 +1,5 @@
 let latitude = 0;
 let longitude = 0;
-let cidades = [
-    "Arcoverde", "Maceió",
-    "Correntes", "Garanhuns",
-    "Pedra", "Caruaru"
-]
 
 function atualizarMapa(novaLatitude, novaLongitude) {
     let mapa = document.getElementById("mapaVisualizer");
@@ -21,13 +16,37 @@ const pessoa = {
     long: longitude,
 };
 
-async function procurar() {
+// URL : http://localhost:8080/Projeto-weather-forecast/WeatherAcess
 
-    let pesquisa = document.getElementById("barraPesquisa").value;
+function fazerRequisicaoPOST() {
+    const url = 'http://localhost:8080/Projeto-weather-forecast/WeatherAcess';
+    const data = {
+        "lat": 10,
+        "lon": 10
+        // Adicione mais dados conforme necessário
+    };
 
-    console.log(pesquisa);
-    let resultados = cidades.filter(
-        (cidade) => {return cidade.toLowerCase().includes(pesquisa.toLowerCase())}
-    );
-    console.log(resultados);
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    };
+
+    fetch(url, requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro na requisição');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Erro na requisição:', error);
+        });
 }
+
+
