@@ -16,3 +16,37 @@ const pessoa = {
     long: longitude,
 };
 
+// URL : http://localhost:8080/Projeto-weather-forecast/WeatherAcess
+
+function fazerRequisicaoPOST() {
+    const url = 'http://localhost:8080/Projeto-weather-forecast/WeatherAcess';
+    const data = {
+        "lat": 10,
+        "lon": 10
+        // Adicione mais dados conforme necessário
+    };
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    };
+
+    fetch(url, requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro na requisição');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Erro na requisição:', error);
+        });
+}
+
+
