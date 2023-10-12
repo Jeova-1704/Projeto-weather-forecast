@@ -1,11 +1,12 @@
-
-
 const tempElement = document.getElementById("temperatura");
 const minMaxElement = document.getElementById("minMax");
 const sensacaoElement = document.getElementById("sensacao");
 const humidadeElement = document.getElementById("humidade");
 const ventoElement = document.getElementById("ventoDisplay");
 const visibilidadeElement = document.getElementById("visibilidadeDisplay");
+let latitute;
+let longitute;
+
 
 function fazerRequisicaoPOST() {
     const url = 'http://localhost:8080/Projeto-weather-forecast/WeatherAcess';
@@ -57,13 +58,28 @@ function fazerRequisicaoPOST() {
 
 function atualizarMapa(novaLatitude, novaLongitude) {
     let mapa = document.getElementById("mapaVisualizer");
-
-    latitude = novaLatitude;
-    longitude = novaLongitude;
-
-    let link = `https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d15787.627348603686!2d-${latitude}!3d-${longitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sgoogle%20maps%20api%20frame!5e0!3m2!1spt-BR!2sbr!4v1696296209365!5m2!1spt-BR!2sbr`;
-
+    let link = `https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d15787.627348603686!2d${novaLongitude}!3d${novaLatitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sgoogle%20maps%20api%20frame!5e0!3m2!1spt-BR!2sbr!4v1696296209365!5m2!1spt-BR!2sbr`;
     mapa.src = link;
+}
+
+function cidadeLatituteLongitute() {
+    let cidade = document.getElementById("entradaPesquisa").value;
+    let nominatimURL = `https://nominatim.openstreetmap.org/search?format=json&q=${cidade}`;
+
+    fetch(nominatimURL)
+        .then(response => response.json())
+        .then(data => {
+            if (data.length > 0) {
+                let latitude = parseFloat(data[0].lat);
+                let longitude = parseFloat(data[0].lon);
+                atualizarMapa(latitude, longitude)
+            } else {
+                alert('Não foi possível encontrar a cidade.');
+            }
+        })
+        .catch(error => {
+            alert('Ocorreu um erro na solicitação:', error);
+        });
 }
 
 
