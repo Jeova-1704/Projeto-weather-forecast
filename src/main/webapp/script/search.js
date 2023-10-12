@@ -37,7 +37,7 @@ function displayResultadosPesquisa(pesquisa, resultados) {
 }
 
 function resizeResultadosPesquisa() {
-    let sectionPesquisa = rdocument.querySelector("section#pesquisa > div#barra-pesquisa");
+    let sectionPesquisa = document.querySelector("section#pesquisa > div#barra-pesquisa");
     let ulResultados = document.getElementById("resultadosPesquisa");
 
     ulResultados.style.width = (sectionPesquisa.offsetWidth - 46) + "px";

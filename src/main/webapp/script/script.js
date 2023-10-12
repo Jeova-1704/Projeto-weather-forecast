@@ -28,7 +28,6 @@ function fazerRequisicaoPOST() {
         .then(response => {
             if (!response.ok) {
                 throw new Error('Erro na requisição');
-
             }
             return response.json();
         })

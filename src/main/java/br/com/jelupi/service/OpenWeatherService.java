@@ -1,6 +1,6 @@
 package br.com.jelupi.service;
 
-import br.com.jelupi.api.apiAdaptors.OpenWeatherAdapter;
+import br.com.jelupi.api.apiAdaptors.openWeatherAdapters.OpenWeatherAdapter;
 import br.com.jelupi.api.apiConfigs.OpenWeatherAPI;
 import br.com.jelupi.api.apiDtos.WeatherDTO;
 import br.com.jelupi.utils.HttpRequestHandler;
@@ -18,12 +18,15 @@ public class OpenWeatherService implements IWeatherService {
         HashMap<String, Float> cityCoordinates = this.extrairLogLat(jsonRequest);
 
         String apiKey = OpenWeatherAPI.API_KEY.value();
-        String urlRequest = OpenWeatherAPI.CITY_WEATHER_UNFORMATED_URL.value()
+        String urlRequestCurrentWeather = OpenWeatherAPI.CITY_WEATHER_UNFORMATED_URL.value()
+                            .formatted(cityCoordinates.get("lat"), cityCoordinates.get("lon"), apiKey);
+        String urlRequestListWeathers = OpenWeatherAPI.CITY_WEATHER_LIST_UNFORMATED_URL.value()
                             .formatted(cityCoordinates.get("lat"), cityCoordinates.get("lon"), apiKey);
 
-        String JsonApiRequest = HttpRequestHandler.getJsonResponse(urlRequest);
+        String jsonApiRequestCurrentWeather = HttpRequestHandler.getJsonResponse(urlRequestCurrentWeather);
+        String jsonApiRequestListWeathers = HttpRequestHandler.getJsonResponse(urlRequestListWeathers);
 
-        OpenWeatherAdapter weatherAdapter = new OpenWeatherAdapter(JsonApiRequest);
+        OpenWeatherAdapter weatherAdapter = new OpenWeatherAdapter(jsonApiRequestCurrentWeather, jsonApiRequestListWeathers);
         WeatherDTO weatherDTO = weatherAdapter.JsonToDTO();
 
         return this.generateJsonFromDTO(weatherDTO);
