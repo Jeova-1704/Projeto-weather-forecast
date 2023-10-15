@@ -12,6 +12,12 @@ import java.util.HashMap;
 
 public class OpenWeatherService implements IWeatherService {
 
+    /**
+     * Fornece {@link String} com as informações da cidade, clima atual e previsões dos próximos 5 dias
+     * @param jsonRequest {@link String} contendo o Json da requisição com informações da longitude ("lon")
+     *                                 e latitude ("lat")
+     * @return {@link String} do Json com as informações
+     */
     @Override
     public String getWeatherInformation(String jsonRequest) {
 
@@ -32,6 +38,15 @@ public class OpenWeatherService implements IWeatherService {
         return this.generateJsonFromDTO(currentWeatherDTO);
     }
 
+
+    // AUXILIARES
+
+    /**
+     * Auxiliar no método {@link OpenWeatherService#getWeatherInformation} para extrair informações da latitude
+     * e longitude passados no Json
+     * @param jsonRequest {@link String} do Json com as informações
+     * @return {@link HashMap} com a latitude e longitude já convertidos em {@link Float}
+     */
     private HashMap<String, Float> extrairLogLat(String jsonRequest) {
         JsonObject jsonRequestObject = JsonParser.parseString(jsonRequest).getAsJsonObject();
         Float latitude = jsonRequestObject.get("lat").getAsFloat();
@@ -45,8 +60,16 @@ public class OpenWeatherService implements IWeatherService {
         return cityCoordinates;
     }
 
-    private String generateJsonFromDTO(WeatherResponseDTO currentWeatherDTO) {
+
+    /**
+     * Auxiliar no método {@link OpenWeatherService#getWeatherInformation} para transformar o DTO fornecido em uma
+     * {@link String } com o json
+     * @param weatherResponseDTO {@link WeatherResponseDTO} contendo as informações da cidade, clima atual e previsões
+*                                                           para os próximos 5 dias
+     * @return {@link String} contendo o Json com as informações extraídas do {@link WeatherResponseDTO}
+     */
+    private String generateJsonFromDTO(WeatherResponseDTO weatherResponseDTO) {
         Gson gson = new Gson();
-        return gson.toJson(currentWeatherDTO);
+        return gson.toJson(weatherResponseDTO);
     }
 }

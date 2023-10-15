@@ -1,5 +1,6 @@
 package br.com.jelupi.api.apiAdaptors.openWeatherAdapters.dtoGenerators;
 
+import br.com.jelupi.api.apiAdaptors.openWeatherAdapters.OpenWeatherAdapter;
 import br.com.jelupi.api.apiDtos.openWeatherDtos.CityDTO;
 import br.com.jelupi.api.apiDtos.openWeatherDtos.CurrentWeatherDTO;
 import br.com.jelupi.api.apiDtos.openWeatherDtos.WeatherListDTO;
@@ -13,8 +14,18 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Classe auxiliar com métodos utilizados em {@link OpenWeatherAdapter#JsonToDTO()} para extrair informações json,
+ * retornando-as em DTOs que sintetizam suas informações
+ */
 public class OpenWeatherDtoGenerators {
 
+    /**
+     * Sintetiza informações da cidade a partir de um {@link JsonObject}
+     * @param jsonObject {@link JsonObject} contendo as informações da cidade
+     * @return {@link CityDTO} contendo informações acerca do nome da cidade, ID na
+     * <a href="https://openweathermap.org">OpenWeatherAPI</a>, país, latitude e longitude
+     */
     public static CityDTO generateCityDTO(JsonObject jsonObject) {
         String cidade = jsonObject.get("name").getAsString();
         String id = jsonObject.get("id").getAsString();
@@ -27,6 +38,12 @@ public class OpenWeatherDtoGenerators {
         return new CityDTO(cidade, id, pais, lat, lon);
     }
 
+    /**
+     * Sintetiza informações do clima a partir de um {@link JsonObject}
+     * @param jsonObjectCurrentWeather {@link JsonObject} contendo informações do clima
+     * @return {@link CurrentWeatherDTO} contendo informações acerca do clima, temperatura, temperatura máxima, temperatura
+     * mínima, sensação térmica, humidade, velocidade do vento e visibilidade
+     */
     public static CurrentWeatherDTO generateWeatherDTO(JsonObject jsonObjectCurrentWeather) {
 
         JsonArray weather = jsonObjectCurrentWeather.getAsJsonArray("weather");
@@ -35,13 +52,13 @@ public class OpenWeatherDtoGenerators {
 
         String clima = weather.get(0).getAsJsonObject().get("main").getAsJsonPrimitive().getAsString();
 
-        int temperatura = main.get("temp").getAsJsonPrimitive().getAsInt();
+        Float temperatura = main.get("temp").getAsJsonPrimitive().getAsFloat();
 
-        int maxTemp = main.get("temp_max").getAsJsonPrimitive().getAsInt();
+        Float maxTemp = main.get("temp_max").getAsJsonPrimitive().getAsFloat();
 
-        int minTemp = main.get("temp_min").getAsJsonPrimitive().getAsInt();
+        Float minTemp = main.get("temp_min").getAsJsonPrimitive().getAsFloat();
 
-        int sensTerm = main.get("feels_like").getAsJsonPrimitive().getAsInt();
+        Float sensTerm = main.get("feels_like").getAsJsonPrimitive().getAsFloat();
 
         int humidade = main.get("humidity").getAsJsonPrimitive().getAsInt();
 
@@ -53,6 +70,12 @@ public class OpenWeatherDtoGenerators {
                 minTemp, sensTerm, humidade, velVento, visibilidade);
     }
 
+
+    /**
+     * Sintetiza informações do clima a partir de um {@link JsonObject}
+     * @param jsonObjectListWeathers {@link JsonObject} contendo informações do clima dos próximos 5 dias
+     * @return {@link ArrayList<WeatherListDTO>} contendo informações do clima dos próximos 5 dias
+     */
     public static ArrayList<WeatherListDTO> generateWeatherListDTO(JsonObject jsonObjectListWeathers) {
         LocalDateTime dataAtual = LocalDateTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -75,9 +98,9 @@ public class OpenWeatherDtoGenerators {
 
         ArrayList<WeatherListDTO> weatherList = new ArrayList<>();
         for (HashMap<String, ArrayList<Object>> inf : dias.values()) {
-            Float tempMedia = ArrayListHandler.getMedia(ArrayListHandler.CastArrayList(inf.get("temps"), Float.class));
-            Float tempMin = ArrayListHandler.getMedia(ArrayListHandler.CastArrayList(inf.get("temps_max"), Float.class));
-            Float tempMax = ArrayListHandler.getMedia(ArrayListHandler.CastArrayList(inf.get("temps_min"), Float.class));
+            Float tempMedia = ArrayListHandler.getMedia(ArrayListHandler.CastArrayList(inf.get("temps"), Integer.class));
+            Float tempMin = ArrayListHandler.getMedia(ArrayListHandler.CastArrayList(inf.get("temps_max"), Integer.class));
+            Float tempMax = ArrayListHandler.getMedia(ArrayListHandler.CastArrayList(inf.get("temps_min"), Integer.class));
             String clima = ArrayListHandler.getPalavraRecorrente(ArrayListHandler.CastArrayList(inf.get("condicoes"), String.class));
             weatherList.add(new WeatherListDTO(clima, tempMedia, tempMax, tempMin));
         }
@@ -85,6 +108,18 @@ public class OpenWeatherDtoGenerators {
         return weatherList;
     }
 
+
+    // AUXILIARES
+
+    /**
+     * <i>Auxiliar</i> utilizado no método {@link OpenWeatherDtoGenerators#generateWeatherListDTO} para checkar se o
+     * {@link HashMap} fornecido já possui o dia que está sendo verificado. Caso não possua, insere uma nova chave
+     * correspondente ao dia ligado à {@link ArrayList} que reúne informações da temperatura média, máxima,
+     * mínima e o clima correspondente àquele dia
+     * @param dia {@link Integer} valor correspondente ao dia que está sendo verificado contando a partir do dia atual
+     * @param dias {@link HashMap} que está armazenando as informações de cada um dos dias
+     * @param element {@link JsonElement} com as informações do dia que está sendo checado
+     */
     private static void checkDayAndInsertInf(int dia, HashMap<String, HashMap<String, ArrayList<Object>>> dias, JsonElement element) {
         if (!dias.containsKey("dia" + dia)) {
             dias.put(("dia" + dia), new HashMap<>());
@@ -96,6 +131,14 @@ public class OpenWeatherDtoGenerators {
         insertWeatherInformations(dias, element, dia);
     }
 
+
+    /**
+     * <i>Auxiliar</i> utilizado no método {@link OpenWeatherDtoGenerators#checkDayAndInsertInf} para inserir as
+     * informações do clima no {@link HashMap} fornecido que está armazenando as informações de cada dia
+     * @param dias {@link HashMap} que está armazenando as informações do clima de cada um dos dias
+     * @param element {@link JsonElement} contendo a informação do dia que está sendo checado
+     * @param dia {@link Integer} valor correspondente ao dia que está sendo verificado contando a partir do dia atual
+     */
     private static void insertWeatherInformations(HashMap<String, HashMap<String, ArrayList<Object>>> dias, JsonElement element, int dia) {
         dias.get(("dia" + dia)).get("temps").add(element.getAsJsonObject().get("main").getAsJsonObject().get("temp").getAsFloat());
         dias.get(("dia" + dia)).get("temps_max").add(element.getAsJsonObject().get("main").getAsJsonObject().get("temp_max").getAsFloat());

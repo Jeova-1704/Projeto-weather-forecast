@@ -1,7 +1,9 @@
 package br.com.jelupi.api.apiConfigs;
 
+/**
+ * Enumerador contendo informações de acesso à <a href="https://openweathermap.org">OpenWeatherAPI</a>
+ */
 public enum OpenWeatherAPI {
-
     API_KEY("ce24c0f548b6498c469460ff2f8cf943"),
 
     // 1º Latitude, 2º Longitude e 3º APIKEY
