@@ -1,5 +1,7 @@
 package br.com.jelupi.api.apiDtos.openWeatherDtos;
 
+import br.com.jelupi.api.apiDtos.DTO;
+
 import java.util.ArrayList;
 
 /**
@@ -10,5 +12,5 @@ import java.util.ArrayList;
  * @param tempMax {@link Float} contendo a temperatura máxima daquele dia (<b>Kelvin</b>)
  * @param tempMin {@link Float} contendo a temperatura mínima daquele dia (<b>Kelvin</b>)
  */
-public record WeatherListDTO(String clima, Float tempMedia, Float tempMax, Float tempMin) {
+public record WeatherListDTO(String clima, Float tempMedia, Float tempMax, Float tempMin) implements DTO {
 }

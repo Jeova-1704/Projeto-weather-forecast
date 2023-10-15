@@ -1,7 +1,7 @@
 package br.com.jelupi.controller;
 
 import br.com.jelupi.service.IWeatherService;
-import br.com.jelupi.service.OpenWeatherService;
+import br.com.jelupi.service.openWeather.OpenWeatherService;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

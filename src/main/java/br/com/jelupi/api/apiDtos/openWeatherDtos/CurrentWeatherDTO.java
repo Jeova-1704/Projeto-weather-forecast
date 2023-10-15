@@ -1,5 +1,7 @@
 package br.com.jelupi.api.apiDtos.openWeatherDtos;
 
+import br.com.jelupi.api.apiDtos.DTO;
+
 /**
  * DTO utilizado para armazenar informações do clima de determinado dia da semana<br>
  * <b>OBS:</b> ao contrário do {@link WeatherListDTO} este é utilizado para armazenar mais informações acerca do clima,
@@ -15,5 +17,5 @@ package br.com.jelupi.api.apiDtos.openWeatherDtos;
  */
 public record CurrentWeatherDTO(String clima, Float temperatura, Float maxTemp,
                                 Float minTemp, Float sensTerm, int humidade,
-                                float velVento, int Visibilidade) {
+                                float velVento, int Visibilidade) implements DTO {
 }

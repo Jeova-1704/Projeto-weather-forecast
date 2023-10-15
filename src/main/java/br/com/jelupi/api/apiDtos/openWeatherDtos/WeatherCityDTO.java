@@ -1,6 +1,6 @@
 package br.com.jelupi.api.apiDtos.openWeatherDtos;
 
-import java.math.BigDecimal;
+import br.com.jelupi.api.apiDtos.DTO;
 
 /**
  * DTO contendo as informações da cidade
@@ -10,6 +10,6 @@ import java.math.BigDecimal;
  * @param latitude {@link Float} com a latitude do local
  * @param longitude {@link Float} com a longitude do local
  */
-public record CityDTO(String cidade, String id, String pais,
-                      Float latitude, Float longitude) {
+public record WeatherCityDTO(String cidade, String id, String pais,
+                             Float latitude, Float longitude) implements DTO {
 }

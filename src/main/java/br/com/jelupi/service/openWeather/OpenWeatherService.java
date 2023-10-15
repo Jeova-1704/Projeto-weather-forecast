@@ -1,8 +1,9 @@
-package br.com.jelupi.service;
+package br.com.jelupi.service.openWeather;
 
 import br.com.jelupi.api.apiAdaptors.openWeatherAdapters.OpenWeatherAdapter;
 import br.com.jelupi.api.apiConfigs.OpenWeatherAPI;
 import br.com.jelupi.api.apiDtos.openWeatherDtos.WeatherResponseDTO;
+import br.com.jelupi.service.IWeatherService;
 import br.com.jelupi.utils.HttpRequestHandler;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;

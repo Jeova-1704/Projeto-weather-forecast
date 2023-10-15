@@ -1,7 +1,7 @@
 package br.com.jelupi.api.apiAdaptors.openWeatherAdapters.dtoGenerators;
 
 import br.com.jelupi.api.apiAdaptors.openWeatherAdapters.OpenWeatherAdapter;
-import br.com.jelupi.api.apiDtos.openWeatherDtos.CityDTO;
+import br.com.jelupi.api.apiDtos.openWeatherDtos.WeatherCityDTO;
 import br.com.jelupi.api.apiDtos.openWeatherDtos.CurrentWeatherDTO;
 import br.com.jelupi.api.apiDtos.openWeatherDtos.WeatherListDTO;
 import br.com.jelupi.utils.ArrayListHandler;
@@ -23,10 +23,10 @@ public class OpenWeatherDtoGenerators {
     /**
      * Sintetiza informações da cidade a partir de um {@link JsonObject}
      * @param jsonObject {@link JsonObject} contendo as informações da cidade
-     * @return {@link CityDTO} contendo informações acerca do nome da cidade, ID na
+     * @return {@link WeatherCityDTO} contendo informações acerca do nome da cidade, ID na
      * <a href="https://openweathermap.org">OpenWeatherAPI</a>, país, latitude e longitude
      */
-    public static CityDTO generateCityDTO(JsonObject jsonObject) {
+    public static WeatherCityDTO generateWeatherCityDTO(JsonObject jsonObject) {
         String cidade = jsonObject.get("name").getAsString();
         String id = jsonObject.get("id").getAsString();
         String pais = jsonObject.get("sys").getAsJsonObject().get("country").getAsString();
@@ -35,7 +35,7 @@ public class OpenWeatherDtoGenerators {
         float lon = jsonObject.get("coord").getAsJsonObject().get("lon").getAsFloat();
         float lat = jsonObject.get("coord").getAsJsonObject().get("lat").getAsFloat();
 
-        return new CityDTO(cidade, id, pais, lat, lon);
+        return new WeatherCityDTO(cidade, id, pais, lat, lon);
     }
 
     /**

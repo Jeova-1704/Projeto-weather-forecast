@@ -2,7 +2,7 @@ package br.com.jelupi.api.apiAdaptors.openWeatherAdapters;
 
 import br.com.jelupi.api.apiAdaptors.ApiAdapter;
 import br.com.jelupi.api.apiAdaptors.openWeatherAdapters.dtoGenerators.OpenWeatherDtoGenerators;
-import br.com.jelupi.api.apiDtos.openWeatherDtos.CityDTO;
+import br.com.jelupi.api.apiDtos.openWeatherDtos.WeatherCityDTO;
 import br.com.jelupi.api.apiDtos.openWeatherDtos.CurrentWeatherDTO;
 import br.com.jelupi.api.apiDtos.openWeatherDtos.WeatherListDTO;
 import br.com.jelupi.api.apiDtos.openWeatherDtos.WeatherResponseDTO;
@@ -42,7 +42,7 @@ public class OpenWeatherAdapter implements ApiAdapter {
         JsonObject jsonObjectCurrentWeather = JsonParser.parseString(this.jsonStringCurrentWeather).getAsJsonObject();
         JsonObject jsonObjectListWeathers = JsonParser.parseString(this.jsonStringListWeathers).getAsJsonObject();
 
-        CityDTO infCidade = OpenWeatherDtoGenerators.generateCityDTO(jsonObjectCurrentWeather);
+        WeatherCityDTO infCidade = OpenWeatherDtoGenerators.generateWeatherCityDTO(jsonObjectCurrentWeather);
         CurrentWeatherDTO infCurrentWeather = OpenWeatherDtoGenerators.generateWeatherDTO(jsonObjectCurrentWeather);
         ArrayList<WeatherListDTO> infDailyWeathers = OpenWeatherDtoGenerators.generateWeatherListDTO(jsonObjectListWeathers);
 

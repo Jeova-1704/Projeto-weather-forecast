@@ -33,7 +33,8 @@ public class HttpRequestHandler {
             httpResponse =  client.send(getRequest, HttpResponse.BodyHandlers.ofString());
 
         } catch (URISyntaxException | IOException | InterruptedException e) {
-            System.out.printf("Não foi possível acessar a API na seguinte URL: %s", urlRequest);
+            System.err.printf("Não foi possível acessar a API na seguinte URL: %s", urlRequest);
+            System.out.println(e.getMessage());
             return null;
         }
 
