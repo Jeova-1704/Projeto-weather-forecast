@@ -2,7 +2,7 @@ package br.com.jelupi.service;
 
 import br.com.jelupi.api.apiAdaptors.openWeatherAdapters.OpenWeatherAdapter;
 import br.com.jelupi.api.apiConfigs.OpenWeatherAPI;
-import br.com.jelupi.api.apiDtos.WeatherDTO;
+import br.com.jelupi.api.apiDtos.openWeatherDtos.WeatherResponseDTO;
 import br.com.jelupi.utils.HttpRequestHandler;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -27,9 +27,9 @@ public class OpenWeatherService implements IWeatherService {
         String jsonApiRequestListWeathers = HttpRequestHandler.getJsonResponse(urlRequestListWeathers);
 
         OpenWeatherAdapter weatherAdapter = new OpenWeatherAdapter(jsonApiRequestCurrentWeather, jsonApiRequestListWeathers);
-        WeatherDTO weatherDTO = weatherAdapter.JsonToDTO();
+        WeatherResponseDTO currentWeatherDTO = weatherAdapter.JsonToDTO();
 
-        return this.generateJsonFromDTO(weatherDTO);
+        return this.generateJsonFromDTO(currentWeatherDTO);
     }
 
     private HashMap<String, Float> extrairLogLat(String jsonRequest) {
@@ -45,8 +45,8 @@ public class OpenWeatherService implements IWeatherService {
         return cityCoordinates;
     }
 
-    private String generateJsonFromDTO(WeatherDTO weatherDTO) {
+    private String generateJsonFromDTO(WeatherResponseDTO currentWeatherDTO) {
         Gson gson = new Gson();
-        return gson.toJson(weatherDTO);
+        return gson.toJson(currentWeatherDTO);
     }
 }

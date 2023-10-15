@@ -2,15 +2,14 @@ package br.com.jelupi.api.apiAdaptors.openWeatherAdapters;
 
 import br.com.jelupi.api.apiAdaptors.ApiAdapter;
 import br.com.jelupi.api.apiAdaptors.openWeatherAdapters.dtoGenerators.OpenWeatherDtoGenerators;
-import br.com.jelupi.api.apiAdaptors.openWeatherAdapters.jsonExtractors.OpenWeatherJsonExtractors;
-import br.com.jelupi.api.apiDtos.CityDTO;
-import br.com.jelupi.api.apiDtos.WeatherDTO;
-import com.google.gson.*;
+import br.com.jelupi.api.apiDtos.openWeatherDtos.CityDTO;
+import br.com.jelupi.api.apiDtos.openWeatherDtos.CurrentWeatherDTO;
+import br.com.jelupi.api.apiDtos.openWeatherDtos.WeatherListDTO;
+import br.com.jelupi.api.apiDtos.openWeatherDtos.WeatherResponseDTO;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class OpenWeatherAdapter implements ApiAdapter {
@@ -23,32 +22,14 @@ public class OpenWeatherAdapter implements ApiAdapter {
     }
 
     @Override
-    public WeatherDTO JsonToDTO() {
+    public WeatherResponseDTO JsonToDTO() {
         JsonObject jsonObjectCurrentWeather = JsonParser.parseString(this.jsonStringCurrentWeather).getAsJsonObject();
         JsonObject jsonObjectListWeathers = JsonParser.parseString(this.jsonStringListWeathers).getAsJsonObject();
 
         CityDTO infCidade = OpenWeatherDtoGenerators.generateCityDTO(jsonObjectCurrentWeather);
+        CurrentWeatherDTO infCurrentWeather = OpenWeatherDtoGenerators.generateWeatherDTO(jsonObjectCurrentWeather);
+        ArrayList<WeatherListDTO> infDailyWeathers = OpenWeatherDtoGenerators.generateWeatherListDTO(jsonObjectListWeathers);
 
-        HashMap<String, JsonPrimitive> infCurrentWeather = OpenWeatherJsonExtractors.extractCurrentWeather(jsonObjectCurrentWeather);
-
-        ArrayList<JsonElement> infListWeathers = this.extractListWeathers(jsonObjectListWeathers);
-
-        return OpenWeatherDtoGenerators.generateWeatherDTO(infCidade, infCurrentWeather, infListWeathers);
+        return new WeatherResponseDTO(infCidade, infCurrentWeather, infDailyWeathers);
     }
-
-    private ArrayList<JsonElement> extractListWeathers (JsonObject jsonObjectListWeather) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
-        LocalDateTime Date = LocalDateTime.now();
-        System.out.println(Date.format(formatter));
-        ArrayList<JsonElement> infListWeathers = new ArrayList<>();
-        System.out.println(jsonObjectListWeather);
-
-        for (JsonElement element : jsonObjectListWeather.get("list").getAsJsonArray()) {
-            if (element.getAsJsonObject().get("dt_txt").getAsString().contains(Date.plusDays(1).format(formatter))) {
-                infListWeathers.add(element.getAsJsonObject().get("main").getAsJsonObject().get("temp"));
-            }
-        }
-        return infListWeathers;
-    }
-
 }

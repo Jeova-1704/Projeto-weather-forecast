@@ -1,4 +1,4 @@
-package br.com.jelupi.api.apiDtos;
+package br.com.jelupi.api.apiDtos.openWeatherDtos;
 
 import java.math.BigDecimal;
 
